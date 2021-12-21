@@ -1,7 +1,11 @@
 <?php
 
 use yii\helpers\Html;
+use app\models\Topic;
 
+use app\models\User;
+
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Article */
 
@@ -16,6 +20,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'topics' => ArrayHelper::map(Topic::find()->all(),'id','name'),
+        'users' => ArrayHelper::map(User::find()->all(),'id','name'),
     ]) ?>
 
 </div>
