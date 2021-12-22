@@ -41,7 +41,9 @@ class UserController extends Controller
     public function actionIndex()
     {
         $searchModel = new UserSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $params['UserSearch']['id'] = Yii::$app->user->id;
+
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -57,6 +59,7 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $this->check($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -93,6 +96,7 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->check($id);
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -113,6 +117,7 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
+        $this->check($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -152,5 +157,19 @@ class UserController extends Controller
 
         }
         return $this->render('image',['model'=>$modelUser]);
+    }
+
+    public function check($id){
+
+        $model1 = $this->findModel($id);
+
+        if ($model1->id != Yii::$app->user->id){
+
+            throw new \yii\web\NotFoundHttpException();
+
+        }
+
+        return true;
+
     }
 }
