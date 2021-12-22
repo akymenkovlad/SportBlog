@@ -12,6 +12,8 @@ use yii\web\Controller;
 
 use yii\web\Response;
 
+use app\models\SignupForm;
+
 class AuthController extends Controller
 
 {
@@ -72,6 +74,20 @@ class AuthController extends Controller
 
         return $this->goHome();
 
+    }
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if (Yii::$app->request->isPost)
+        {
+            $model->load(Yii::$app->request->post());
+            if ($model->signup())
+            {
+                return $this->redirect(['auth/login']);
+            }
+        }
+        return $this->render('/site/signup',['model'=>$model]);
     }
 
 }
