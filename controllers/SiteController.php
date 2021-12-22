@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use app\models\SearchForm;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -263,6 +264,44 @@ class SiteController extends Controller
             }
 
             return $this->redirect(['site/view', 'id' => $id]);
+
+        }
+
+    }
+
+    public function actionSearch()
+
+    {
+
+        $model = new SearchForm();
+
+        if (Yii::$app->request->isGet) {
+
+            $model->load(Yii::$app->request->get());
+
+            $data = $model->SearchAtricle(3);
+
+            $popular = Article::find()->orderBy('viewed desc')->limit(3)->all();
+
+            $recent = Article::find()->orderBy('date desc')->limit(3)->all();
+
+            $topics = Topic::find()->all();
+
+            return $this->render('search',[
+
+                'articles' => $data['articles'],
+
+                'pagination' => $data['pagination'],
+
+                'popular' => $popular,
+
+                'recent' => $recent,
+
+                'topics' => $topics,
+
+                'search' => $model->text
+
+            ]);
 
         }
 
