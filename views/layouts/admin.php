@@ -28,8 +28,8 @@ AppAsset::register($this);
 <header>
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandLabel' => 'SportBlog',
+        'brandUrl' => '/admin/default/index',
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
@@ -42,6 +42,19 @@ AppAsset::register($this);
             ['label' => 'Article', 'url' => ['/admin/article']],
             ['label' => 'Comments', 'url' => ['/admin/comment']],
             ['label' => 'Topic', 'url' => ['/admin/topic']],
+            Yii::$app->user->isGuest ? (
+            ['label' => 'Login', 'url' => ['/auth/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/auth/logout'], 'post', ['class' => 'form-inline'])
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->name . ')',
+                    ['class' => 'btn btn-link logout']
+
+                )
+                . Html::endForm()
+                . '</li>'
+            )
         ],
     ]);
     NavBar::end();

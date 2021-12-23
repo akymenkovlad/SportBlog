@@ -15,17 +15,6 @@ class Module extends \yii\base\Module
      */
     public $layout = '/admin';
     public $controllerNamespace = 'app\modules\admin\controllers';
-
-    /**
-     * {@inheritdoc}
-     */
-    public function init()
-    {
-        parent::init();
-
-        // custom initialization code goes here
-    }
-
     public function behaviors()
     {
         return [
@@ -41,7 +30,7 @@ class Module extends \yii\base\Module
                         'matchCallback' =>  function($rule, $action)
                         {
                             if (isset(Yii::$app->user->identity->login)){
-                                return (Yii::$app->user->identity->login == 'mbu.bogdan@gmail.com');
+                                return (Yii::$app->user->identity->login == 'admin');
                             }
                             else{
                                 return false;
@@ -51,5 +40,14 @@ class Module extends \yii\base\Module
                 ]
             ]
         ];
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
+    {
+        parent::init();
+
+        // custom initialization code goes here
     }
 }
