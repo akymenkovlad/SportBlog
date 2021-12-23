@@ -2,13 +2,13 @@
 
 /* @var $this yii\web\View */
 
-/* @var $form yii\bootstrap4\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 
 /* @var $model app\models\LoginForm */
 
 use yii\helpers\Html;
 
-use yii\bootstrap4\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 $this->title = 'Signup';
 
