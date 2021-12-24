@@ -23,7 +23,7 @@ use yii\helpers\Url;
 
                 </h6>
 
-                <h1 class="entry-title"><a href="# <a href="blog.html"><?= $article->title; ?></a> "><?= $article->title; ?></a></h1>
+                <h1 class="entry-title"><a href="# <a href="blog.html"<?= $article->title; ?></a> <?= $article->title; ?></a></h1>
 
             </header>
 

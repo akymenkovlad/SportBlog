@@ -28,7 +28,7 @@ class AuthController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             if (Yii::$app->user->identity->login == 'admin'){
-                return $this->redirect(['/admin/default']);
+                return $this->redirect(['/admin/user']);
             }
             return $this->redirect(['/index']);
         }

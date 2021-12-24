@@ -23,7 +23,6 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => ['auth/login']
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -69,7 +68,6 @@ $config = [
         ],
         'user' => [
             'class' => 'app\modules\user\Module',
-            'loginUrl' => ['auth/login'],
         ],
     ],
     'params' => $params,

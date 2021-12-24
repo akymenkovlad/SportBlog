@@ -28,8 +28,8 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Travel',
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandLabel' => 'SportBlog',
+        'brandUrl' => '/index',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -38,19 +38,33 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
+
             Yii::$app->user->isGuest ? (
             ['label' => 'Login', 'url' => ['/auth/login']]
-            ) : (
+            ) :
                 '<li>'
-                . Html::beginForm(['/auth/logout'], 'post', ['class' => 'form-inline'])
+                . Html::beginForm(['/user/user'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->name . ')',
+                    'User',
                     ['class' => 'btn btn-link logout']
-
+                )
+                . Html::endForm()
+                . '<li>'
+                . Html::beginForm(['/user/article'], 'post')
+                . Html::submitButton(
+                    'Article',
+                    ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+                . '<li>'
+                . Html::beginForm(['/auth/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->name . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
         ],
     ]);
     ?>
@@ -72,7 +86,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; SportBlog <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

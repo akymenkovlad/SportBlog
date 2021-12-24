@@ -29,8 +29,8 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandLabel' => 'SportBlog',
+        'brandUrl' =>'/admin/user',
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -39,7 +39,6 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'User', 'url' => ['/admin/user']],
-            ['label' => 'Home', 'url' => ['/admin/default/index']],
             ['label' => 'Article', 'url' => ['/admin/article']],
             ['label' => 'Comments', 'url' => ['/admin/comment']],
             ['label' => 'Topic', 'url' => ['/admin/topic']],
@@ -51,7 +50,6 @@ AppAsset::register($this);
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->name . ')',
                     ['class' => 'btn btn-link logout']
-
                 )
                 . Html::endForm()
                 . '</li>'
